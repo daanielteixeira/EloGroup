@@ -1,0 +1,175 @@
+<Doctype html>
+
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>EloGroup</title>
+            <style type="text/css">
+                #leads_panel{
+                    border-style: solid;
+                    border-color: black;
+                    width: 800px;
+                    height: 500px;
+                    margin-left: 270px
+                }
+                #text_leads{
+                    display: inline-block;
+                    margin-left: 160px;
+                    font-size: 25px;
+                }
+                #icon_leads{
+                    margin-left: 50px;
+                    margin-top: 40px;
+                    display: inline-block;
+                }
+                #form_leads{
+                    margin-left: 50px;
+                    margin-top: 60px;
+                    display: inline-table;
+                }
+               
+                #opp{
+                    display: inline-table;
+                    margin-left: 50px;
+                }
+                #opp_table{
+                    width: 300px;
+                    text-align: center;
+                }
+
+            </style>
+        </head>
+        <body>
+            <div id="leads_panel">	
+                <div id="icon_leads">
+                    <img src="../images/icon.png" width="250px" />
+                </div>
+                <div id="text_leads">
+                    Novo Lead
+                </div>
+                <div id="form_leads">
+                    <form name="form_new_leads" >
+                        <label>Nome *</label><br>
+                        <input type="text" id="name" name="name" placeholder="Digite seu nome completo" style="border-radius: 5px;width: 250px;height: 25px;" required><br><br><br>
+                        <label>Telefone *</label><br>
+                        <input type="tel" name="phone" id="phone" placeholder="(xx)xxxxx-xxxx" style="border-radius: 5px;width: 250px;height: 25px;" required><br><br><br>
+                        <label>Email *</label><br>
+                        <input type="email" name="email" id="email" style="border-radius: 5px;width: 250px;height: 25px;" required><br><br><br>
+                    </form>
+                </div>
+                <div id="opp">
+                    <form name="opp_form">
+                        <label>Oportunidades *</label>  
+                        <table id="opp_table" border rules="all">
+                            <tr style="background-color: grey;color: white">
+                                <td>
+                                    <input type="checkbox" class="check_master">
+                                </td>
+                                <td style="width: 250px">
+                                    
+                                </td>                            
+                            </tr>
+                            <tr style="background-color: #C0C0C0;color: white">
+                                <td>
+                                    <input type="checkbox" class="check">
+                                </td>
+                                <td style="color: black;">
+                                    RPA
+                                </td>                            
+                            </tr>
+                            <tr style="background-color: white;color: white">
+                                <td>
+                                    <input type="checkbox" class="check">
+                                </td>
+                                <td style="color: black;">
+                                    Produto Digital
+                                </td>                            
+                            </tr>
+                            <tr style="background-color: #C0C0C0;color: white">
+                                <td>
+                                    <input type="checkbox" class="check">
+                                </td>                           
+                                <td style="color: black;">
+                                    Analytics
+                                </td> 
+                            </tr>
+                            <tr style="background-color: white;color: white">
+                                <td>
+                                    <input type="checkbox" class="check">
+                                </td>
+                                <td style="color: black;">
+                                    BPM
+                                </td>                            
+                            </tr>
+                            <tr style="background-color: #C0C0C0;color: white">
+                                <td style="height: 18px;">
+                                    
+                                </td>
+                                <td>
+
+                                </td>                         
+                            </tr>
+                        </table>                          
+                    </form>
+                    <form name="form_new_leads"class="form_new_leads" onsubmit="validar(this);return false">
+                        <input type="submit" value ="Salvar" class="btn_check" style="width: 300px;background-color: #00BFFF; border: 0px;height: 32px;margin-top: 5px;">
+                    </form> 
+                </div>
+            </div>
+            <script>
+                let checkbox = document.querySelectorAll('.check')
+                let checkbox_master = document.querySelector('.check_master')
+                let btn_check = document.querySelector('.btn_check')
+                let nome = document.getElementById('name')
+                let phone = document.getElementById('phone')
+                let email = document.getElementById('email')
+                let form = document.getElementById('form_new_leads')   
+                
+               
+                function validar(){
+                    if(nome.value == '' || phone.value == '' ||email.value == ''){
+                      var erro = true;
+                    }
+                    if(erro == true){                        
+                        return false;
+                                                
+                    }
+                    else{
+                        return true;
+                    }
+                    form.submit()
+                }
+                
+                btn_check.addEventListener('click', () => {
+                    var valida = validar()
+                    if(valida == true){
+                        alert("Lead incluído com sucesso!")
+                        reloadPage(); 
+                    }
+                    else{
+                        alert("Todos os campos devem ser preenchidos")
+                        reloadPage(); 
+                    }
+                })
+                function reloadPage(){
+                    location.reload()
+                }
+                checkbox_master.addEventListener('click', () => {
+                    for(let current of checkbox){
+                        if(checkbox_master.checked == true){
+                            current.checked = true
+                        }
+                        else{
+                            current.checked = false
+                        }
+                    }
+                })
+                
+      
+                
+                   
+                       
+                    
+            </script>
+        </body>
+    </html>

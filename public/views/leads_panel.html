@@ -1,0 +1,179 @@
+<Doctype html>
+
+    <html>
+        <head>
+            <title>EloGroup</title>
+            <meta charset="utf-8">
+            <style type = "text/css">           
+                #leads_panel{
+                    border-style: solid;
+                    border-color: black;
+                    width: 800px;
+                    height: 500px;
+                    margin-left: 270px
+                }
+                #icon_leads{
+                    margin-left: 40px;
+                    margin-top: 40px;
+                    display: inline-block;
+                }
+                #text_leads{
+                    display: inline-block;
+                    margin-left: 160px;
+                    font-size: 25px;
+                }
+                #form_lead{
+                    margin-left: 40px;
+                    margin-top: 45px
+                }
+                #table{
+                    margin-left: 40px;
+                    padding: 10px;
+                    width: 90%;
+                    height: 270px;
+                    text-align: center;
+                }
+                
+            </style>
+        </head>
+        <body onload="checkCols()">
+            <div id="leads_panel">
+                <div id="icon_leads">
+                    <img src="../images/icon.png" width="250px" />
+                </div>
+                <div id="text_leads">
+                    <label>Painel de Leads</label>
+                </div>
+                <div id="form_lead">
+                    <form name="new_lead" method="GET" action ="save_leads.html">
+                        <input type="submit" name="new_lead" onclick="save_leads.html" value="Novo Lead (+)" style="background: #00BFFF;color: white;width: 220px;height: 50px;border: 0;" >
+                    </form>
+                </div>
+                <table id="table" border rules="all">
+                    <tr style="background-color: grey;color: white;">
+                        <td style="width: 30%;table-layout: fixed;">
+                            <label>Cliente em potencial</label>
+                        </td>
+                        <td style="width: 30%;table-layout: fixed">
+                            <label>Dados confirmados</label>
+                        </td>
+                        <td style="width: 30%;table-layout: fixed">
+                            <label>Reunião agendada</label>
+                        </td>
+                        <td>
+                            <label></label>
+                        </td>
+                    </tr>
+                    <tr style="background-color: #C0C0C0">
+                        <td> 
+                            <label id="cell11">Org. Internacionais</label>
+                        </td>
+                        <td>
+                            <label id="cell12"></label>
+                        </td>
+                        <td>
+                            <label id="cell13"></label>
+                        </td>
+                        <td>
+                            <input type="image" class="arrow1" src="../images/grey_arrow.png" style="width: 30px;"></input>
+                        </td>
+                    </tr>
+                    <tr style="background-color: white;">
+                        <td>
+                            <label id="cell21"></label>
+                        </td>
+                        <td>
+                            <label id="cell22">Ind. Farm. LTDA</label>
+                        </td>
+                        <td>
+                            <label id="cell23"></label>
+                        </td>
+                        <td>
+                            <input type="image" class="arrow2" src="../images/white_arrow.png" style="width: 30px;"></input>
+                        </td>
+                    </tr>
+                    <tr style="background-color: #C0C0C0;color: black">
+                        <td>
+                            <label id="cell31">Musc. Sound Live Cmp</label>
+                        </td>
+                        <td>
+                            <label id="cell32"></label>
+                        </td>
+                        <td>
+                            <label id="cell33"></label> 
+                        </td>
+                        <td>
+                            <input type="image" class="arrow3" src="../images/grey_arrow.png" style="width: 30px;"></input>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+            <script>
+                function drag(ev){
+                    ev.dataTransfer.setData("text", ev.target.id);
+                }
+                function drop(ev){
+                    var data = ev.dataTransfer.getData("text");
+                    ev.target.appendChild(document.getElementById(data));
+                }
+                function allowDrop(ev){
+                    ev.preventDefault();
+                }
+                let arrow1 = document.querySelector('.arrow1')
+                let arrow2 = document.querySelector('.arrow2')
+                let arrow3 = document.querySelector('.arrow3')
+                arrow1.addEventListener('click', () => {
+                    valor_11 = document.getElementById("cell11").innerHTML;
+                    valor_12 = document.getElementById("cell12").innerHTML;
+                    valor_13 = document.getElementById("cell13").innerHTML;
+                    if(valor_11 != ''){
+                        trocar = valor_11.replace();
+                        document.getElementById("cell12").innerHTML = trocar;
+                        document.getElementById("cell11").innerHTML = '';
+                        document.getElementById("cell13").innerHTML = '';
+                    }
+                    if(valor_12 != ''){
+                        trocar = valor_12.replace();
+                        document.getElementById("cell13").innerHTML = trocar;
+                        document.getElementById("cell11").innerHTML = '';
+                        document.getElementById("cell12").innerHTML = '';
+                    }                                 
+                })
+                arrow2.addEventListener('click', () => {
+                    valor_21 = document.getElementById("cell21").innerHTML;
+                    valor_22 = document.getElementById("cell22").innerHTML;
+                    valor_23 = document.getElementById("cell23").innerHTML;
+                    if(valor_21 != ''){
+                        trocar = valor_21.replace();
+                        document.getElementById("cell22").innerHTML = trocar;
+                        document.getElementById("cell21").innerHTML = '';
+                        document.getElementById("cell23").innerHTML = '';
+                    }
+                    if(valor_22 != ''){
+                        trocar = valor_22.replace();
+                        document.getElementById("cell23").innerHTML = trocar;
+                        document.getElementById("cell21").innerHTML = '';
+                        document.getElementById("cell22").innerHTML = '';
+                    }                                 
+                })
+                arrow3.addEventListener('click', () => {
+                    valor_31 = document.getElementById("cell31").innerHTML;
+                    valor_32 = document.getElementById("cell32").innerHTML;
+                    valor_33 = document.getElementById("cell33").innerHTML;
+                    if(valor_31 != ''){
+                        trocar = valor_31.replace();
+                        document.getElementById("cell32").innerHTML = trocar;
+                        document.getElementById("cell31").innerHTML = '';
+                        document.getElementById("cell33").innerHTML = '';
+                    }
+                    if(valor_32 != ''){
+                        trocar = valor_32.replace();
+                        document.getElementById("cell33").innerHTML = trocar;
+                        document.getElementById("cell31").innerHTML = '';
+                        document.getElementById("cell32").innerHTML = '';
+                    }                                 
+                })
+            </script>
+        </body>

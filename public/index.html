@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+        <head>
+          <meta charSet = 'utf-8' />
+          <style type="text/css">
+            #cadastro{
+            border-style: solid;
+            border-color: black;
+            width: 500px;
+            height: 600px;
+            margin-left: 380px
+            }
+            #icon{
+              margin-left: 104px;
+              margin-top: 40px;
+            }
+            #form{
+              margin-left: 120px;
+              margin-top: 50px;
+
+            }
+
+          </style>
+          
+        </head>
+        <body>
+          <div id="cadastro">
+			      <div id="icon">
+				      <img src="images/icon.png" />
+			      </div>
+			      <div id="form">
+				
+              <form name="form_cadastro" id="formulario" action ="views/leads_panel.html" onsubmit="validar(this);return false">
+                  
+                <label>Usuário * </label><br /><br />
+                <input type="text" name="user" id="user" style="width:255px;border-radius: 5px;height: 25px" required> <br /><br /><br />
+
+                <label>Senha *</label><br /><br />
+                <input type="password" name="pass" id="pass" style="width:255px;border-radius: 5px;height: 25px" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()]).{8,}" required> <br /><br /><br />
+      
+                <label>Confirmar senha * </label><br /><br />
+                <input type="password" id="confirmPass" name="confirm_pass" style="width:255px;border-radius: 5px;height: 25px" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()]).{8,}" required> <br /><br /><br />
+
+                <input type="submit" name ="send" value="Registrar" style="width: 263px; background-color: white; height: 40px;" />
+
+				      </form>
+			      </div>
+		      </div>
+          <script type="text/javascript">
+            
+            function validar(){
+      
+              let user = document.getElementById('user')
+              let pass = document.getElementById('pass')
+              let confirmPass = document.getElementById('confirmPass')
+              let form = document.getElementById('formulario')       
+              if((pass.value != confirmPass.value)){
+                alert("Confirmação de senha incorreta")
+                var erro = true;
+              }
+         
+              if(pass.value.length < 7){
+                erro = true;
+              }
+              if(user.value == '' || pass.value == '' || confirmPass.value == ''){
+                erro = true
+                alert("Todos os campos devem ser preenchidos")
+              }
+              if(erro == true){
+                return false;
+               
+              }
+              form.submit()
+            }		
+          </script>
+        </body> 
+      </html>
